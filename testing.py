@@ -62,3 +62,10 @@ con.select('Inbox')
 
 # get all emails from inbox. Not just "austin..." or "galileo...". Probably just replace "FROM" with "ALL"  
 get_emails(search('FROM', 'galileokim451@gmail.com', con))
+
+
+
+# 0. Learn object oriented programming for python 
+# 1. make functions less that or equal to 7 lines (aka does only one function)
+# 2. make a unit test
+# 3. Learn about refactoring code: https://code.visualstudio.com/docs/editor/refactoring#:~:text=Refactoring%20actions,-Extract%20Method&text=Select%20the%20source%20code%20you,function%20at%20various%20different%20scopes.
