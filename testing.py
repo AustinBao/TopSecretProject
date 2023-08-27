@@ -10,16 +10,11 @@ def search(key, value, con):
 	return data
 
 def get_emails(result_bytes):
-	
-	print(result_bytes)
-	print("\n")
-
 			# [b'1 2 3 4 5 6']  
 	for num in result_bytes[0].split():
 		typ, data = con.fetch(num, '(RFC822)')
 
 		message = email.message_from_bytes(data[0][1])
-		print(type(message))
 		main_body = message.walk()
 
 
@@ -65,4 +60,5 @@ con.login(user, password)
 
 con.select('Inbox')
 
-get_emails(search('FROM', 'austinybao2006@gmail.com', con))
+# get all emails from inbox. Not just "austin..." or "galileo...". Probably just replace "FROM" with "ALL"  
+get_emails(search('FROM', 'galileokim451@gmail.com', con))
