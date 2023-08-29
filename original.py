@@ -5,9 +5,10 @@ user = 'boblovesgaliandaustin@gmail.com'
 password = 'vomngjhnjncdywnd'
 imap_url = 'imap.gmail.com'
 
-def search(key, value, con):
-	result, data = con.search(None, key, '"{}"'.format(value))
+def get_all_email_bytes(con):
+	_ , data = con.search(None, 'ALL')
 	return data
+
 #not modularizing yet
 def get_emails(result_bytes):
 			# [b'1 2 3 4 5 6']  
@@ -20,9 +21,7 @@ def get_emails(result_bytes):
 		for part in main_body:
 			if part.get_content_type() == "text/plain":
 				
-				chunk = part.as_string()
-				indi = chunk.split()
-				# print(indi)
+				indi = part.as_string().split()
 
 				for words in indi:
 					if words == "Unsubscribe":
@@ -45,13 +44,22 @@ def get_emails(result_bytes):
 						final = final.removeprefix("<")
 						final = final.removesuffix(">")
 
+						print(final)
+
 con = imaplib.IMAP4_SSL(imap_url)
 
 con.login(user, password)
 
 con.select('Inbox')
 
-# get all emails from inbox. Not just "austin..." or "galileo...". Probably just replace "FROM" with "ALL"  
-get_emails(search('FROM', 'galileokim451@gmail.com', con))
+
+get_emails(get_all_email_bytes(con))
+# output = [b'1 2 3']
 
 
+
+
+# 0. Learn object oriented programming for python 
+# 1. make functions less that or equal to 7 lines (aka does only one function)
+# 2. make a unit test
+# 3. Learn about refactoring code: https://code.visualstudio.com/docs/editor/refactoring#:~:text=Refactoring%20actions,-Extract%20Method&text=Select%20the%20source%20code%20you,function%20at%20various%20different%20scopes.
