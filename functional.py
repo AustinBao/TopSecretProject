@@ -1,7 +1,7 @@
 import imaplib 
 import email
 
-
+# get users data somehow
 user = 'boblovesgaliandaustin@gmail.com'
 password = 'vomngjhnjncdywnd'
 
