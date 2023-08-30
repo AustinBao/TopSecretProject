@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>HELLO WORLD!</title>
+        <link rel="stylesheet" type="text/css" href="website.css">
+    </head>
+
+    <body>
+        <script type="text/javascript" src="website.js"></script>
+        
+        <h1>Unsubscribe links</h1>
+        
+        {% for i in range(num_of_emails) %}
+            <p>{{ all_senders[i] }}</p>
+            
+            <a href='' + {{ all_links[i] }} target=_blank title="Click to unsubscribe">
+                <p>{{ all_links[i] }}</p>
+            </a>
+        {% endfor %}
+
+        <a href= "https://stackoverflow.com/questions/40844903/how-can-i-run-a-python-script-in-html" target=_blank title="Click to unsubscribe">
+            <p>Stack</p>
+        </a>
+    </body>
+</html>

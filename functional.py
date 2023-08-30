@@ -29,10 +29,12 @@ def turn_email_into_array(main_body):
 	return all_text_from_email
 
 def find_index_of_text_unsubscribe(all_text_from_email):
+	global curr_word_index
 	for words in all_text_from_email:
 		if words == "Unsubscribe":
 			curr_word_index = int(all_text_from_email.index(words))
-	return curr_word_index
+			return curr_word_index
+	return "No unsub option"
 
 def find_index_of_unsubscribe_link(curr_word_index):
 	link_index = int(curr_word_index) + 1
@@ -75,9 +77,13 @@ for emails in email_bytes[0].split():
 	email_as_array = turn_email_into_array(main_body)
 
 	unsubscribe_index = find_index_of_text_unsubscribe(email_as_array)
+	
+	# Added a if statement to check if current email has a unsubscribe link
+	if unsubscribe_index == "No unsub option":
+		continue
+	else:
+		link_index = find_index_of_unsubscribe_link(unsubscribe_index)
 
-	link_index = find_index_of_unsubscribe_link(unsubscribe_index)
+		array_of_link = returns_array_of_link(email_as_array, link_index)
 
-	array_of_link = returns_array_of_link(email_as_array, link_index)
-
-	print(joins_array_of_link(array_of_link))
+		print(joins_array_of_link(array_of_link))
