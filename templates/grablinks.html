@@ -5,19 +5,22 @@
     </head>
 
     <body>
-        <script src="{{ url_for('static', filename='js/grablinks.js') }}"></script>
-        
-        <h1>Unsubscribe links</h1>
-        
+        <div class = "header">
+        <h1 id = "title">Unsubscribe Links</h1>
+        </div>
+        <div class = "center">
         {% for i in range(num_of_emails) %}
 
-            <p>{{ all_senders[i] }}</p>
+            <p class = "sender">{{ all_senders[i] }}</p>
 
             <a href= "{{ all_links[i] }}" target=_blank title="Click to unsubscribe">
                 <button id=unsubbtn class="button button1">Unsubscribe</button>
             </a>
+            <button id ="deletebtn" class="button button1">Delete Emails From Sender?</button>
 
         {% endfor %}
+        </div>
+        <script src="{{ url_for('static', filename='js/grablinks.js') }}"></script>
     </body>
 </html>
 
