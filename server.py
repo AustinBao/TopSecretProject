@@ -68,10 +68,19 @@ con.login(user, password)
 con.select('Inbox')
 
 
-#runs a function to run link retrieval
-#one issue is url rule must start with /, that is why there is a /
+
 @app.route("/")
 def home():
+	return flask.render_template('home.html')
+ 
+
+@app.route("/signup.html")
+def cool():
+	return flask.render_template('signup.html')
+
+
+@app.route("/grablinks.html")
+def grablink():
 	email_bytes = get_all_email_bytes(con)
 	all_links = []
 	all_senders = []
@@ -93,12 +102,8 @@ def home():
 		
 	num_of_emails = len(all_links)
 
-	return flask.render_template('website.html', 
+	return flask.render_template('grablinks.html', 
 			      num_of_emails=num_of_emails, 
 				  all_links=all_links, 
 				  all_senders=all_senders)
 
-#if you run url with /cool/ you get to see a website that says "cool"
-@app.route("/cool/")
-def cool():
-	return "<p>cool</p>"
