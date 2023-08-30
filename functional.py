@@ -1,13 +1,6 @@
 import imaplib 
 import email
 
-# get users data somehow
-user = 'boblovesgaliandaustin@gmail.com'
-password = 'vomngjhnjncdywnd'
-
-imap_url = 'imap.gmail.com'
-
-
 
 def get_all_email_bytes(con):
 	_ , data = con.search(None, 'ALL')
@@ -20,7 +13,8 @@ def turn_email_byte_into_words(email_byte):
 def return_main_body(readable_data):
 	message = email.message_from_bytes(readable_data[0][1])
 	main_body = message.walk()
-	return main_body
+	from_who = message.get('From')
+	return main_body, from_who
 
 def turn_email_into_array(main_body):
 	for part in main_body:
@@ -59,6 +53,9 @@ def joins_array_of_link(array_of_link):
 	return final_link
 
 
+user = 'boblovesgaliandaustin@gmail.com'
+password = 'vomngjhnjncdywnd'
+imap_url = 'imap.gmail.com'
 
 con = imaplib.IMAP4_SSL(imap_url)
 
@@ -66,24 +63,31 @@ con.login(user, password)
 
 con.select('Inbox')
 
-# output = [b'1 2 3']
-email_bytes = get_all_email_bytes(con)
+#possibly clean up this function in some way? 
+def website_info():
+	email_bytes = get_all_email_bytes(con)
+	all_links = []
+	all_senders = []
 
-for emails in email_bytes[0].split():
-	email_in_words = turn_email_byte_into_words(emails)
+	for emails in email_bytes[0].split():
+		email_in_words = turn_email_byte_into_words(emails)
+		main_body, from_who = return_main_body(email_in_words)
+		all_senders.append(from_who)
 
-	main_body = return_main_body(email_in_words)
-	
-	email_as_array = turn_email_into_array(main_body)
+		email_as_array = turn_email_into_array(main_body)
+		unsubscribe_index = find_index_of_text_unsubscribe(email_as_array)
 
-	unsubscribe_index = find_index_of_text_unsubscribe(email_as_array)
-	
-	# Added a if statement to check if current email has a unsubscribe link
-	if unsubscribe_index == "No unsub option":
-		continue
-	else:
-		link_index = find_index_of_unsubscribe_link(unsubscribe_index)
+		if unsubscribe_index == "No unsub option":
+			continue
+		else:
+			link_index = find_index_of_unsubscribe_link(unsubscribe_index)
+			array_of_link = returns_array_of_link(email_as_array, link_index)
+			all_links.append(joins_array_of_link(array_of_link))
+		
+	num_of_emails = len(all_links)
+	#change this to an object to make it more readable
+	return [num_of_emails, all_links, all_senders]
 
-		array_of_link = returns_array_of_link(email_as_array, link_index)
 
-		print(joins_array_of_link(array_of_link))
+#Change name of file 
+#Possibly modularize file even further for organization purposes
