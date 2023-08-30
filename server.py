@@ -80,6 +80,7 @@ def home():
 		email_in_words = turn_email_byte_into_words(emails)
 		main_body, from_who = return_main_body(email_in_words)
 		all_senders.append(from_who)
+
 		email_as_array = turn_email_into_array(main_body)
 		unsubscribe_index = find_index_of_text_unsubscribe(email_as_array)
 
@@ -92,7 +93,10 @@ def home():
 		
 	num_of_emails = len(all_links)
 
-	return flask.render_template('website.html', num_of_emails=num_of_emails, all_links=all_links, all_senders=all_senders)
+	return flask.render_template('website.html', 
+			      num_of_emails=num_of_emails, 
+				  all_links=all_links, 
+				  all_senders=all_senders)
 
 #if you run url with /cool/ you get to see a website that says "cool"
 @app.route("/cool/")
