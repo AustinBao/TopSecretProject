@@ -63,7 +63,6 @@ con.login(user, password)
 
 con.select('Inbox')
 
-#possibly clean up this function in some way? 
 def website_info():
 	email_bytes = get_all_email_bytes(con)
 	all_links = []
@@ -85,9 +84,6 @@ def website_info():
 			all_links.append(joins_array_of_link(array_of_link))
 		
 	num_of_emails = len(all_links)
-	#change this to an object to make it more readable
+
 	return [num_of_emails, all_links, all_senders]
 
-
-#Change name of file 
-#Possibly modularize file even further for organization purposes

@@ -1,13 +1,25 @@
 <html>
     <head>
-        <link href="{{ url_for('static', filename='css/website.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/signup.css') }}" rel="stylesheet">
         <title>Sign Up</title>
     </head>
 
-    <body>        
-        <a href="grablinks.html"> 
-            <button class="button button1">grab links</button>
-        </a>
+    <body> 
+            <div id = "signup">       
+                <form id = "signup">
+                    <label for="email">Email:</label><br>
+                    <input type="text" id="email" name="email"><br>
+                    <label for="password">Generated Password:</label><br>
+                    <input type="text" id="password" name="password">
+                </form>
+                
+                <button id="signupbtn">Confirm</button>
+                <!-- Add if statement to allow user to grablinks.html or not -->
+                <!-- <a href="grablinks.html">  -->
+        
+                <!-- </a> -->
+            </div>
+        <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
     </body>
 </html>
 
