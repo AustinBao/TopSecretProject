@@ -54,8 +54,6 @@ con.select('Inbox')
 
 
 get_emails(get_all_email_bytes(con))
-# output = [b'1 2 3']
-
 
 
 
