@@ -55,17 +55,11 @@ def joins_array_of_link(array_of_link):
 
 # user = 'boblovesgaliandaustin@gmail.com'
 # password = 'vomngjhnjncdywnd'
-#have logic to make sure you dont post link from same sender
-imap_url = 'imap.gmail.com'
-con = imaplib.IMAP4_SSL(imap_url)
+
+con = imaplib.IMAP4_SSL('imap.gmail.com')
 
 def website_info(email, pw):
-
-	#bubbling
-	# try:
 	con.login(email, pw)
-	# except Exception:
-	# 	raise Exception("Bad user login")
 
 	con.select('Inbox')
 
