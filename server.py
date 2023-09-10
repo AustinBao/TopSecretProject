@@ -17,10 +17,13 @@ def signup():
 @app.route("/grablinks/<id>")
 def display_links(id):
 	#retrieve the links, senders, and number of emails from the functional script
-	print(user_data[id][0])
 	final_package = {}
 	try:
-		final_package = ge.website_info(user_data[id][0], user_data[id][1])
+		if not user_data[id]["data"]:
+			final_package = ge.website_info(user_data[id]["email"], user_data[id]["pw"])
+			user_data[id]["data"] = final_package
+		else:
+			final_package = user_data[id]["data"]
 	except Exception as e:
 		return "<p>"+ str(e) +"</p>"
 
@@ -34,7 +37,11 @@ def submit_info():
 	data = request.data.decode('utf-8')
 	data = json.loads(data)
 	id = uuid.uuid4().hex
-	user_data[id] = (data["mail"], data["pw"])
+	user_data[id] = {
+		"email": data["mail"], 
+		"pw": data["pw"],
+		"data": False
+		}
 
 	return {"uid":id}, 200
 	# data = request.json

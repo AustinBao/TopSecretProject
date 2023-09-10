@@ -62,10 +62,10 @@ con = imaplib.IMAP4_SSL(imap_url)
 def website_info(email, pw):
 
 	#bubbling
-	try:
-		con.login(email, pw)
-	except Exception:
-		raise Exception("Bad user login")
+	# try:
+	con.login(email, pw)
+	# except Exception:
+	# 	raise Exception("Bad user login")
 
 	con.select('Inbox')
 
