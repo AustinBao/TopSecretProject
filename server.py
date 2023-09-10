@@ -47,3 +47,13 @@ def submit_info():
 	# data = request.json
 	# print(data.get('email'))
 	# print(data.get('password'))
+	
+ 
+# Testing out Fecth with JS and Python
+@app.route("/ftestpage", methods = ['GET'])
+def ftestpage():
+	return flask.render_template("ftestpage.html")
+
+@app.route("/ftest", methods = ['GET'])
+def ftest():
+	return{"some_text": "SALLAH MALAIKUM!"}

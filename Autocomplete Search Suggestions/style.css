@@ -46,7 +46,7 @@ body{
 
 .search-input .autocom-box{
   padding: 0;
-  opacity: 0;
+  /* opacity: 0; */
   pointer-events: none;
   max-height: 280px;
   overflow-y: auto;
@@ -61,7 +61,7 @@ body{
 .autocom-box li{
   list-style: none;
   padding: 8px 12px;
-  display: none;
+  /* display: none; */
   width: 100%;
   cursor: default;
   border-radius: 3px;
@@ -70,6 +70,7 @@ body{
 .search-input.active .autocom-box li{
   display: block;
 }
+
 .autocom-box li:hover{
   background: #efefef;
 }
@@ -84,5 +85,5 @@ body{
   line-height: 55px;
   font-size: 20px;
   color: #644bff;
-  cursor: pointer;
+  /* cursor: pointer;*/
 }

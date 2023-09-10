@@ -90,5 +90,8 @@ def website_info(email, pw):
 		
 	num_of_emails = len(all_links)
 
+	# print(num_of_emails, "\n", "\n", all_links, "\n", "\n", "\n", all_senders )
+	
 	return [num_of_emails, all_links, all_senders]
 
+# website_info("boblovesgaliandaustin@gmail.com","vomngjhnjncdywnd")

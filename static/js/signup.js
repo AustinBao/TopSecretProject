@@ -1,7 +1,3 @@
-
-// button = document.getElementById("signupbtn")
-// button.addEventListener('click', console.log("hi"))
-
 form = document.getElementById("signup")
 form.addEventListener('submit', function(e) {e.preventDefault(); post_login()})
     
