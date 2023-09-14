@@ -27,5 +27,6 @@ async function post_login() {
 
   const id = await res.json();
 
+  localStorage.setItem("uid", id.uid)
   window.location.replace("grablinks/" + id.uid);
 }
