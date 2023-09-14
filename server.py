@@ -5,6 +5,7 @@ import grabemail as ge
 #add a timer to id
 #if a user logs in multiple time, check if their name and password exists in dict already
 import uuid
+import deletemail as dm
 
 app = Flask(__name__)
 
@@ -33,7 +34,8 @@ def display_links(id):
 	return flask.render_template('grablinks.html', 
 			      num_of_emails=final_package[0], 
 				  all_links=final_package[1], 
-				  all_senders=final_package[2])
+				  all_senders=final_package[2],
+				  uid=id)
 
 
 @app.route("/submit-info", methods = ['POST'])
@@ -56,6 +58,13 @@ def submit_info():
 		}
 
 	return {"uid":id}, 200
-	# data = request.json
-	# print(data.get('email'))
-	# print(data.get('password'))
+
+@app.route("/delete-post", methods = ['POST'])
+def deletepost():
+	data = request.data.decode('utf-8')
+	data = json.loads(data)
+	print(data)
+	return {"event":"success"}, 200
+
+	
+
